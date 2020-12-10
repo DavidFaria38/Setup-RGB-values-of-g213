@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Creator: David Faria
+# Date:    10/12/2020 (dd/mm/yyyy)
+# Github:  DavidFaria38
+
+
+# default color defines the color that will be used if no parameter is defined 
+defaultColor=00ff00
+
+
+# set RGB values of keyboard g213 to whatever HEXA velue
+function set_RGB_value(){
+	g213-led -a $1
+	echo "Led changed to $2"
+
+} # end set_RGB_value()
+
+ 
+# test argument of function to set the RGB value of the keyboard
+function checkArgument(){
+	if [ $1 == "green" ] # Set color to green
+	then
+		set_RGB_value 00ff00 "color green"
+	
+	elif [ $1 == "red" ] # Set color to red
+	then
+		set_RGB_value ff0000 "color red"
+	
+	elif [ $1 == "blue" ] # Set color to blue
+	then
+		set_RGB_value 0000ff "color blue"
+	
+	elif [ $1 == "lightblue" ] # Set color to lightblue
+	then
+		set_RGB_value 00ffff "color lightblue"
+	
+	fi
+
+} # end checkArgument()
+
+
+
+# checks if argument exists
+if [ $# -ne 0 ]
+then
+	
+	checkArgument $1
+
+else  # Set color to default value
+	
+	set_RGB_value ${defaultColor} "default color (${defaultColor})"
+	
+fi	
+
+
